@@ -5,13 +5,17 @@ const characterCodes = Array.from(Array(26)).map( (_, i) => i + 97);
 const lowercaseLetters = characterCodes.map(code => String.fromCharCode(code));
 const uppercaseLetters = lowercaseLetters.map(letter => letter.toUpperCase());
 
-
+let lengthChoice = prompt('How many characters would you like your password to be?');
+let numberChoice = prompt('Would you like to allow numbers?');
+let symbolChoice = prompt('Would you like to allow symbols?');
+let lowerChoice = prompt('Would you like to allow Lowercase letters?');
+let upperChoice = prompt('Would you like to allow Uppercase letters?');
 
 
 // // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-function generatePassword(length, numberChoice, symbolChoice, lowerChoice, upperChoice) {
+function generatePassword(lengthChoice, numberChoice, symbolChoice, lowerChoice, upperChoice) {
   
   let useTheseChars = [
     ...(symbolChoice ? symbols : []),
@@ -22,7 +26,7 @@ function generatePassword(length, numberChoice, symbolChoice, lowerChoice, upper
 
   
   let pw = '';
-  
+  let length = lengthChoice;
 
   if (useTheseChars.length === 0) return '';
 
@@ -31,19 +35,13 @@ function generatePassword(length, numberChoice, symbolChoice, lowerChoice, upper
     pw += useTheseChars[randomIndex];
   }
   return pw;
-
 }
 
-
+console.log(generatePassword(lengthChoice, numberChoice, symbolChoice, lowerChoice, upperChoice));
 
 // // Write password to the #password input
 function writePassword() {
-  let length = prompt('How many characters would you like your password to be? Must be between 8-128 characters.');
-  let numberChoice = confirm('Would you like to allow numbers?');
-  let symbolChoice = confirm('Would you like to allow symbols?');
-  let lowerChoice = confirm('Would you like to allow Lowercase letters?');
-  let upperChoice = confirm('Would you like to allow Uppercase letters?');
-  var password = generatePassword(length, numberChoice, symbolChoice, lowerChoice, upperChoice);
+  var password = generatePassword(lengthChoice, numberChoice, symbolChoice, lowerChoice, upperChoice);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
