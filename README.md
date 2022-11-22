@@ -1,2 +1,1 @@
-# Challenge-03
-Random Password Generator
+# Password Generator Starter Code
